@@ -24,10 +24,14 @@ jobs:
             - name: Install Helm
               uses: azure/setup-helm@v3
 
+            - name: Update kubeconfig
+              run: |
+                  aws eks update-kubeconfig --name your-eks-cluster-name
+
             - name: Deploy to EKS
               run: |
                   kubectl config set-context --current --namespace=default
-                  helm upgrade --install botgauge-chart-release ./helm-chart \
+                  helm upgrade --install botgauge-chart-release./helm-chart \
                     --set image.repository=yoismak/hellobotgauge \
                     --set image.tag=${GITHUB_SHA::7} \
                     --namespace default
