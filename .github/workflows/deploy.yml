@@ -35,7 +35,7 @@ jobs:
                   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   AWS_REGION: ${{ secrets.AWS_REGION }}
             - name: Helm Update
-              run: helm upgrade --install botgauge-chart-release ./helm-chart --set image.repository=yoismak/hellobotgauge --set image.tag=${GITHUB_SHA::7} --namespace default
+              run: helm upgrade --install botgauge-chart ./helm-chart --set image.repository=yoismak/hellobotgauge --set image.tag=${GITHUB_SHA::7} --namespace default
               env:
                   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
